@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>相機辨識 - 植物辨識系統</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/camera.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>植物辨識系統</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">首頁</a></li>
+                    <li><a href="{{ url_for('camera') }}" class="active">相機辨識</a></li>
+                    <li><a href="{{ url_for('history') }}">歷史記錄</a></li>
+                    <li><a href="{{ url_for('plant_info') }}">植物資訊</a></li>
+                    <li><a href="{{ url_for('about') }}">關於</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <section class="camera-section">
+                <h2>使用相機辨識植物</h2>
+                <p>請將相機對準植物，然後點擊拍攝按鈕。</p>
+                
+                <div class="camera-container">
+                    <video id="video" autoplay playsinline></video>
+                    <canvas id="canvas" style="display:none;"></canvas>
+                    <div class="camera-controls">
+                        <button id="switchCamera" class="switch-camera-button">
+                            <svg class="switch-camera-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 16H15V10H19L12 3L5 10H9V16Z" fill="white"/>
+                                <path d="M15 8H9V14H5L12 21L19 14H15V8Z" fill="white"/>
+                            </svg>
+                        </button>
+                        <button id="captureBtn" class="capture-button"></button>
+                    </div>
+                </div>
+                
+                <div class="preview-container" style="display:none;">
+                    <h3>預覽照片</h3>
+                    <img id="preview" src="" alt="預覽照片">
+                    <div class="preview-controls">
+                        <button id="retakeBtn" class="btn btn-secondary">重新拍攝</button>
+                        <button id="submitBtn" class="btn">辨識植物</button>
+                    </div>
+                </div>
+                
+                <form id="imageForm" action="{{ url_for('upload') }}" method="post" style="display:none;">
+                    <input type="hidden" name="image_data" id="imageData">
+                </form>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 植物辨識系統 | 使用 Python、TensorFlow 和 Flask 開發</p>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/camera.js') }}"></script>
+</body>
+</html>

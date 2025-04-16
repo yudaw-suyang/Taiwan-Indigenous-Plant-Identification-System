@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>關於 - 植物辨識系統</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>植物辨識系統</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">首頁</a></li>
+                    <li><a href="{{ url_for('camera') }}">相機辨識</a></li>
+                    <li><a href="{{ url_for('history') }}">歷史記錄</a></li>
+                    <li><a href="{{ url_for('plant_info') }}">植物資訊</a></li>
+                    <li><a href="{{ url_for('about') }}" class="active">關於</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <section class="about-section">
+                <h2>關於植物辨識系統</h2>
+                
+                <div class="about-content">
+                    <div class="about-description">
+                        <h3>專案介紹</h3>
+                        <p>植物辨識系統是一個使用深度學習技術來辨識12種不同植物的應用程式。本系統使用TensorFlow框架訓練的卷積神經網路模型，能夠從照片中識別植物種類，並提供相關資訊。</p>
+                        
+                        <h3>技術架構</h3>
+                        <ul>
+                            <li><strong>後端框架：</strong> Python Flask</li>
+                            <li><strong>深度學習框架：</strong> TensorFlow</li>
+                            <li><strong>圖像處理：</strong> OpenCV, Pillow</li>
+                            <li><strong>前端技術：</strong> HTML, CSS, JavaScript</li>
+                        </ul>
+                        
+                        <h3>功能特色</h3>
+                        <ul>
+                            <li>支援12種植物的辨識</li>
+                            <li>支援上傳照片或使用相機拍攝</li>
+                            <li>提供植物詳細資訊和照顧提示</li>
+                            <li>保存辨識歷史記錄</li>
+                            <li>簡約直觀的使用者介面</li>
+                            <li>支援多用戶同時使用</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="about-usage">
+                        <h3>使用方法</h3>
+                        <ol>
+                            <li>在首頁選擇上傳照片或使用相機拍攝</li>
+                            <li>系統會自動分析照片並辨識植物種類</li>
+                            <li>查看辨識結果和植物詳細資訊</li>
+                            <li>可以在歷史記錄頁面查看過去的辨識結果</li>
+                            <li>在植物資訊頁面瀏覽所有支援的植物資訊</li>
+                        </ol>
+                        
+                        <h3>開發者資訊</h3>
+                        <p>本系統由植物愛好者開發，旨在幫助人們更好地認識和了解植物。如有任何問題或建議，請聯繫我們。</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 植物辨識系統 | 使用 Python、TensorFlow 和 Flask 開發</p>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

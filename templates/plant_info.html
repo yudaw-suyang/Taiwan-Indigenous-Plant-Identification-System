@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>植物資訊 - 植物辨識系統</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>植物辨識系統</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">首頁</a></li>
+                    <li><a href="{{ url_for('camera') }}">相機辨識</a></li>
+                    <li><a href="{{ url_for('history') }}">歷史記錄</a></li>
+                    <li><a href="{{ url_for('plant_info') }}" class="active">植物資訊</a></li>
+                    <li><a href="{{ url_for('about') }}">關於</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <section class="plant-info-section">
+                <h2>植物資訊庫</h2>
+                <p>這裡提供了我們系統可以辨識的所有植物的詳細資訊。</p>
+                
+                <div class="plant-filter">
+                    <input type="text" id="plantSearch" placeholder="搜尋植物..." class="search-input">
+                </div>
+                
+                <div class="plant-info-grid">
+                    {% for plant_name in plants %}
+                    <div class="plant-info-card" data-plant="{{ plant_name }}">
+                        <h3>{{ plant_name }}</h3>
+                        <div class="plant-info-content">
+                            <div class="plant-description">
+                                <h4>描述</h4>
+                                <p>{{ plant_info[plant_name].description }}</p>
+                            </div>
+                            <div class="plant-care">
+                                <h4>照顧提示</h4>
+                                <p>{{ plant_info[plant_name].care_tips }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 植物辨識系統 | 使用 Python、TensorFlow 和 Flask 開發</p>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        // 植物搜尋功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('plantSearch');
+            const plantCards = document.querySelectorAll('.plant-info-card');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                plantCards.forEach(card => {
+                    const plantName = card.getAttribute('data-plant').toLowerCase();
+                    if (plantName.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

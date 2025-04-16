@@ -1,0 +1,197 @@
+/* 結果頁面的額外樣式 */
+.result-section {
+    padding: 30px;
+}
+
+.result-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.result-image {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+}
+
+.result-image img {
+    width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.result-info {
+    flex: 2;
+    min-width: 300px;
+}
+
+.result-header {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--primary-light);
+}
+
+.result-header h3 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.confidence {
+    margin-bottom: 20px;
+}
+
+.confidence span {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.confidence-bar {
+    height: 12px;
+    background-color: var(--background-light);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.confidence-fill {
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 6px;
+    width: 0;
+    transition: width 1.5s ease-in-out;
+}
+
+.plant-details {
+    margin-bottom: 30px;
+    background-color: var(--background-light);
+    padding: 20px;
+    border-radius: var(--border-radius);
+}
+
+.plant-details h4 {
+    color: var(--primary-dark);
+    margin: 15px 0 10px;
+    font-size: 1.2rem;
+}
+
+.plant-details p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.result-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+/* 無法辨識頁面樣式 */
+.not-recognized-section {
+    padding: 30px;
+    text-align: center;
+}
+
+.not-recognized-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+    margin-top: 20px;
+    background-color: var(--background-light);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.not-recognized-icon {
+    flex: 1;
+    min-width: 150px;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.not-recognized-icon svg {
+    width: 100%;
+    height: auto;
+}
+
+.not-recognized-info {
+    flex: 3;
+    min-width: 300px;
+    text-align: left;
+}
+
+.not-recognized-info h3 {
+    color: var(--error-color);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.not-recognized-info ul {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.not-recognized-info li {
+    margin-bottom: 8px;
+}
+
+.suggestion {
+    background-color: var(--primary-light);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin: 25px 0;
+    border-left: 4px solid var(--primary-color);
+}
+
+.suggestion h4 {
+    color: var(--primary-dark);
+    margin-bottom: 15px;
+}
+
+.suggestion ul {
+    margin-left: 20px;
+}
+
+.not-recognized-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    justify-content: center;
+}
+
+/* 動畫效果 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.result-container, .not-recognized-container {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .result-container, .not-recognized-container {
+        flex-direction: column;
+    }
+    
+    .result-image, .not-recognized-icon {
+        margin: 0 auto 20px;
+    }
+    
+    .result-actions, .not-recognized-actions {
+        flex-direction: column;
+    }
+    
+    .result-actions .btn, .not-recognized-actions .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

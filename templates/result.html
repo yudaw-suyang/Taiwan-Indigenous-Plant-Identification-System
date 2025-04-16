@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>辨識結果 - 植物辨識系統</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/result.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>植物辨識系統</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">首頁</a></li>
+                    <li><a href="{{ url_for('camera') }}">相機辨識</a></li>
+                    <li><a href="{{ url_for('history') }}">歷史記錄</a></li>
+                    <li><a href="{{ url_for('plant_info') }}">植物資訊</a></li>
+                    <li><a href="{{ url_for('about') }}">關於</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <section class="result-section">
+                <h2>辨識結果</h2>
+                
+                <div class="result-container">
+                    <div class="result-image">
+                        <img src="{{ prediction.image }}" alt="辨識的植物圖片">
+                    </div>
+                    
+                    <div class="result-info">
+                        <div class="result-header">
+                            <h3>{{ prediction.class }}</h3>
+                            <div class="confidence">
+                                <span>置信度: {{ "%.2f"|format(prediction.confidence * 100) }}%</span>
+                                <div class="confidence-bar">
+                                    <div class="confidence-fill" style="width: {{ prediction.confidence * 100 }}%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="plant-details">
+                            <h4>植物資訊</h4>
+                            <p>{{ plant_info.description }}</p>
+                            
+                            <h4>照顧提示</h4>
+                            <p>{{ plant_info.care_tips }}</p>
+                        </div>
+                        
+                        <div class="result-actions">
+                            <a href="{{ url_for('index') }}" class="btn btn-secondary">返回首頁</a>
+                            <a href="{{ url_for('plant_info') }}" class="btn">查看更多植物資訊</a>
+                            <button id="shareResult" class="btn">分享結果</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 植物辨識系統 | 使用 Python、TensorFlow 和 Flask 開發</p>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/result.js') }}"></script>
+</body>
+</html>

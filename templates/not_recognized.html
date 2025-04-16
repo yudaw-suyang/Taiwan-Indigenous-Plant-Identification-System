@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>無法辨識 - 植物辨識系統</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/result.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>植物辨識系統</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">首頁</a></li>
+                    <li><a href="{{ url_for('camera') }}">相機辨識</a></li>
+                    <li><a href="{{ url_for('history') }}">歷史記錄</a></li>
+                    <li><a href="{{ url_for('plant_info') }}">植物資訊</a></li>
+                    <li><a href="{{ url_for('about') }}">關於</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <section class="not-recognized-section">
+                <h2>無法辨識植物</h2>
+                
+                <div class="not-recognized-container">
+                    <div class="not-recognized-icon">
+                        <svg width="120" height="120" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#FF6B6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M15 9L9 15" stroke="#FF6B6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9 9L15 15" stroke="#FF6B6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    
+                    <div class="not-recognized-info">
+                        <h3>很抱歉，我們無法辨識這個植物</h3>
+                        <p>可能的原因：</p>
+                        <ul>
+                            <li>圖片不夠清晰或光線不足</li>
+                            <li>拍攝角度不佳</li>
+                            <li>這個植物不在我們的辨識範圍內</li>
+                            <li>系統錯誤：{{ error }}</li>
+                        </ul>
+                        
+                        <div class="suggestion">
+                            <h4>建議</h4>
+                            <p>請嘗試以下方法：</p>
+                            <ul>
+                                <li>在光線充足的環境下重新拍攝</li>
+                                <li>確保植物在畫面中央且佔據畫面的大部分</li>
+                                <li>嘗試拍攝植物的不同部位（葉子、花朵等）</li>
+                                <li>查看我們支援的植物列表</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="not-recognized-actions">
+                            <a href="{{ url_for('index') }}" class="btn btn-secondary">返回首頁</a>
+                            <a href="{{ url_for('camera') }}" class="btn">重新拍攝</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 植物辨識系統 | 使用 Python、TensorFlow 和 Flask 開發</p>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/result.js') }}"></script>
+</body>
+</html>

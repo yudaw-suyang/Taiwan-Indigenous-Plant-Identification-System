@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>歷史記錄 - 植物辨識系統</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>植物辨識系統</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">首頁</a></li>
+                    <li><a href="{{ url_for('camera') }}">相機辨識</a></li>
+                    <li><a href="{{ url_for('history') }}" class="active">歷史記錄</a></li>
+                    <li><a href="{{ url_for('plant_info') }}">植物資訊</a></li>
+                    <li><a href="{{ url_for('about') }}">關於</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <section class="history-section">
+                <h2>辨識歷史記錄</h2>
+                
+                {% if history|length > 0 %}
+                <div class="history-grid">
+                    {% for record in history %}
+                    <div class="history-card">
+                        <div class="history-image">
+                            <img src="{{ record.image }}" alt="歷史記錄圖片">
+                        </div>
+                        <div class="history-info">
+                            <div class="history-timestamp">{{ record.timestamp }}</div>
+                            {% if record.predicted_class %}
+                            <div class="history-result">{{ record.predicted_class }}</div>
+                            {% if record.confidence %}
+                            <div class="history-confidence">
+                                <span>置信度: {{ "%.2f"|format(record.confidence * 100) }}%</span>
+                            </div>
+                            {% endif %}
+                            {% else %}
+                            <div class="history-result">未知植物</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="empty-history">
+                    <p>目前沒有歷史記錄。</p>
+                    <p>開始使用相機或上傳照片來辨識植物吧！</p>
+                    <div class="empty-actions">
+                        <a href="{{ url_for('index') }}" class="btn btn-secondary">返回首頁</a>
+                        <a href="{{ url_for('camera') }}" class="btn">開始辨識</a>
+                    </div>
+                </div>
+                {% endif %}
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 植物辨識系統 | 使用 Python、TensorFlow 和 Flask 開發</p>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

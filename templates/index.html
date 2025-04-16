@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>植物辨識系統</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>植物辨識系統</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}" class="active">首頁</a></li>
+                    <li><a href="{{ url_for('camera') }}">相機辨識</a></li>
+                    <li><a href="{{ url_for('history') }}">歷史記錄</a></li>
+                    <li><a href="{{ url_for('plant_info') }}">植物資訊</a></li>
+                    <li><a href="{{ url_for('about') }}">關於</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <section class="hero">
+                <h2>歡迎使用植物辨識系統</h2>
+                <p>這個系統可以辨識12種不同的植物，只需上傳照片或使用相機拍攝即可獲得結果。</p>
+            </section>
+            
+            <section class="features">
+                <div class="feature-card">
+                    <h3>上傳照片</h3>
+                    <p>從您的設備上傳植物照片進行辨識</p>
+                    <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+                        <div class="file-upload">
+                            <input type="file" name="file" id="file" accept="image/*" required>
+                            <label for="file">選擇照片</label>
+                        </div>
+                        <button type="submit" class="btn">上傳並辨識</button>
+                    </form>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>使用相機</h3>
+                    <p>使用您的網路攝影機或手機相機拍攝植物照片</p>
+                    <a href="{{ url_for('camera') }}" class="btn">開啟相機</a>
+                </div>
+            </section>
+            
+            <section class="info-section">
+                <h3>支援的植物種類</h3>
+                <div class="plant-grid">
+                    {% for plant in PLANT_CLASSES %}
+                    <div class="plant-item">{{ plant }}</div>
+                    {% endfor %}
+                </div>
+                <a href="{{ url_for('plant_info') }}" class="btn btn-secondary">查看植物詳細資訊</a>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 植物辨識系統 | 使用 Python、TensorFlow 和 Flask 開發</p>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/upload.js') }}"></script>
+</body>
+</html>
